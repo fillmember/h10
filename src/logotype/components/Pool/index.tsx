@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { withSize } from "react-sizeme";
 import clsx from "clsx";
 import { Bot as BotComponent } from "../bot";
-import { PoolProps, BoundingMode } from "../../types";
+import { PoolProps, BoundingMode, BotFeature } from "../../types";
 import {
   useQuadTree,
   useSize,
@@ -20,7 +20,7 @@ export const Pool = withSize({
   monitorWidth: true,
   monitorHeight: true,
 })((props: PoolProps & HTMLAttributes<SVGSVGElement> & { size: any }) => {
-  const { count, className, size, zoom, birthStagger } = props;
+  const { count, className, size, zoom, birthStagger, botFeatures } = props;
   const { width, height } = useSize(size.width, size.height, zoom);
   const [bots, addBot] = useBots({ props, width, height });
   const quadTree = useQuadTree(width, height);
@@ -61,7 +61,12 @@ export const Pool = withSize({
         {...eventHandlers}
       >
         {bots.map((bot) => (
-          <BotComponent key={bot.id} bot={bot} captured={capturedBot === bot} />
+          <BotComponent
+            key={bot.id}
+            bot={bot}
+            captured={capturedBot === bot}
+            features={botFeatures}
+          />
         ))}
       </svg>
     </div>

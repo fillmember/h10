@@ -23,6 +23,12 @@ export enum BoundingMode {
   Warp = "warp",
 }
 
+export enum BotFeature {
+  Legs,
+  Face,
+  Solid,
+}
+
 export type PoolProps = {
   backgroundColor: string;
   foregroundColor: string;
@@ -36,4 +42,5 @@ export type PoolProps = {
   pause?: boolean;
   transformInitialBot?: (arg: IBotTransformFunction) => void;
   boundingMode?: BoundingMode;
+  botFeatures?: BotFeature[];
 };
