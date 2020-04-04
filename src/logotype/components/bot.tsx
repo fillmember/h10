@@ -4,6 +4,7 @@ import round from "lodash/round";
 import clamp from "lodash/clamp";
 import { radToDeg } from "../core/Math";
 import styles from "./bot.module.css";
+import BotModel from "../core/Bot";
 
 const round1 = (v) => round(v, 1);
 const arrToTranslate = (arr: number[]): string => `translate(${arr.join(" ")})`;
@@ -28,15 +29,18 @@ export const Leg: React.FC<{ factor: any; leg: any; eyePosition: any }> = ({
   );
 };
 
+const useEyePosition = ({ vx, vy, r }: BotModel): number[] => {
+  const [x, y] = [vx, vy].map((v) => clamp(v, -r, r)).map(round1);
+  return [x, y];
+};
+
 export const Bot: React.FC<{
-  bot: any;
+  bot: BotModel;
   captured?: boolean;
   eyeWidth?: number;
   eyeHeight?: number;
 }> = ({ bot, captured = false, eyeWidth = 3, eyeHeight = 3 }) => {
-  const eyePosition = [bot.vx, bot.vy]
-    .map((v) => clamp(v, -bot.r, bot.r))
-    .map(round1);
+  const eyePosition = useEyePosition(bot);
   return (
     <g
       className="cursor-pointer"
@@ -52,7 +56,7 @@ export const Bot: React.FC<{
         <Leg factor={-1} leg={bot.l1} eyePosition={eyePosition} />
         <circle className="stroke-0" r={bot.r} cx="0" cy="0" />
         <Leg factor={1} leg={bot.l2} eyePosition={eyePosition} />
-        <g className="eye" transform={arrToTranslate(eyePosition)}>
+        <g transform={arrToTranslate(eyePosition)}>
           <circle className="stroke-0" r={eyeHeight * 2 + 1} cx="1" cy="0" />
           <line
             className="text-transparent fill-current"
