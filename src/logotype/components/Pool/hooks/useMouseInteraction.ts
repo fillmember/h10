@@ -49,8 +49,10 @@ export function useMouseInteraction(
       moveBotTo(candidate, x, y);
     }
   }
-  function onMouseUp(evt) {
+  function onMouseUp() {
     if (capturedBot) {
+      capturedBot.vx *= -1;
+      capturedBot.vy *= -1;
       capturedBot.immobile = false;
       setCapturedBot(null);
     }
