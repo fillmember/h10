@@ -7,10 +7,7 @@ import Leg from "./Leg";
 import { Range } from "../types/index";
 
 const applyMomentum = (v0: number, v1: number): number => {
-  if (v1 === 0) {
-    return v0 * 0.9;
-  }
-  return v0 * 0.5 + v1;
+  return Math.min(2, v0 * 0.5 + v1);
 };
 
 export default class Bot {
@@ -83,8 +80,8 @@ export default class Bot {
   update(dt: number, quadtree = this.parent.quadtree): void {
     const { l1, l2 } = this;
     if (this.immobile) {
-      this.vx = dt * applyMomentum(this.vx, this.x - this.lastx);
-      this.vy = dt * applyMomentum(this.vy, this.y - this.lasty);
+      this.vx = dt * -applyMomentum(this.vx, this.x - this.lastx);
+      this.vy = dt * -applyMomentum(this.vy, this.y - this.lasty);
       this.lastx = this.x;
       this.lasty = this.y;
     }
