@@ -11,16 +11,10 @@ import {
   useMouseInteraction,
   useBots,
   useFrame,
+  useMergedRef,
 } from "./hooks";
 import { randomize } from "../../fnBotInit";
 import styles from "./pool.module.css";
-
-function mergeRefs(refs, element) {
-  refs.forEach((ref) => {
-    if (typeof ref === "function") ref(element);
-    else if (ref != null) ref.current = element;
-  });
-}
 
 export const Pool = withSize({
   monitorWidth: true,
@@ -44,7 +38,6 @@ export const Pool = withSize({
         }, delay);
       });
   }, []);
-  const refMerged = useCallback((e) => mergeRefs([ref1, ref2], e), [ref2]);
   const { pause } = useFrame({ props, bots, quadTree, width, height });
   useEffect(() => {
     pause(!visible);
@@ -53,7 +46,7 @@ export const Pool = withSize({
     <div className={clsx("pool", styles.svg, className)}>
       <svg
         className="w-full h-full"
-        ref={refMerged}
+        ref={useMergedRef(ref1, ref2)}
         viewBox={`0 0 ${width} ${height}`}
         style={usePoolStyle(props)}
         {...eventHandlers}
