@@ -5,11 +5,6 @@ import clamp from "lodash/clamp";
 import { radToDeg } from "../core/Math";
 import styles from "./bot.module.css";
 
-const toLocal = (str) =>
-  str
-    .split(" ")
-    .map((str) => (styles[str] ? styles[str] : str))
-    .join(" ");
 const round1 = (v) => round(v, 1);
 const arrToTranslate = (arr: number[]): string => `translate(${arr.join(" ")})`;
 
@@ -23,7 +18,7 @@ export const Leg: React.FC<{ factor: any; leg: any; eyePosition: any }> = ({
   const transform = `${arrToTranslate(pos)} rotate(${r})`;
   return (
     <line
-      className={toLocal("leg stroke")}
+      className="text-transparent fill-current"
       x1={0}
       x2={leg.length}
       y1={0}
@@ -44,36 +39,41 @@ export const Bot: React.FC<{
     .map(round1);
   return (
     <g
-      className={toLocal(clsx("bot", { captured }))}
+      className="cursor-pointer"
       transform={arrToTranslate([bot.x, bot.y].map(round1))}
     >
       <circle cx="0" cy="0" />
-      <g className={toLocal(clsx("zoomer", { birth: bot.age < 20 }))}>
+      <g
+        className={clsx("transition-transform duration-300 ease-in-out", {
+          [styles.birth]: bot.age < 20,
+          "transform scale-125": captured,
+        })}
+      >
         <Leg factor={-1} leg={bot.l1} eyePosition={eyePosition} />
-        <circle className={toLocal("bg")} r={bot.r} cx="0" cy="0" />
+        <circle className="stroke-0" r={bot.r} cx="0" cy="0" />
         <Leg factor={1} leg={bot.l2} eyePosition={eyePosition} />
-        <g className={toLocal("eye")} transform={arrToTranslate(eyePosition)}>
-          <circle
-            className={toLocal("bg")}
-            r={eyeHeight * 2 + 1}
-            cx="1"
-            cy="0"
-          />
+        <g className="eye" transform={arrToTranslate(eyePosition)}>
+          <circle className="stroke-0" r={eyeHeight * 2 + 1} cx="1" cy="0" />
           <line
-            className={toLocal("one stroke")}
+            className="text-transparent fill-current"
             x1={-eyeWidth}
             x2={-eyeWidth}
             y1={-eyeHeight}
             y2={eyeHeight}
           />
           <circle
-            className={toLocal("zero stroke")}
+            className="text-transparent fill-current"
             cy="0"
             cx={eyeWidth}
             r={eyeHeight}
           />
         </g>
-        <circle className={toLocal("circle stroke")} r={bot.r} cx="0" cy="0" />
+        <circle
+          className="text-transparent fill-current"
+          r={bot.r}
+          cx="0"
+          cy="0"
+        />
       </g>
     </g>
   );
