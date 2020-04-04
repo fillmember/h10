@@ -22,7 +22,7 @@ export function useFrame(input: {
   const refT0 = useRef<number>();
   const refAge = useRef<number>(0);
   const [, render] = useState();
-  const [qtUpdateInterval, setQuadTreeUpdateInterval] = useState(20);
+  const [qtUpdateInterval, setQuadTreeUpdateInterval] = useState(100);
   const refPause = useRef<boolean>(false);
   const pause = (value: boolean) => (refPause.current = value);
   const onFrame: FrameRequestCallback = (t1) => {

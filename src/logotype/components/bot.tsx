@@ -36,7 +36,7 @@ export const Bot: React.FC<{
   captured?: boolean;
   eyeWidth?: number;
   eyeHeight?: number;
-}> = ({ bot, captured = false, eyeWidth = 3, eyeHeight = 3 }) => {
+}> = ({ bot, captured, eyeWidth, eyeHeight }) => {
   const eyePosition = useEyePosition(bot);
   return (
     <g
@@ -78,4 +78,9 @@ export const Bot: React.FC<{
       </g>
     </g>
   );
+};
+Bot.defaultProps = {
+  captured: false,
+  eyeWidth: 3,
+  eyeHeight: 3,
 };

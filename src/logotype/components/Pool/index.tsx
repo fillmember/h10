@@ -38,10 +38,19 @@ export const Pool = withSize({
         }, delay);
       });
   }, []);
-  const { pause } = useFrame({ props, bots, quadTree, width, height });
+  const { pause, setQuadTreeUpdateInterval } = useFrame({
+    props,
+    bots,
+    quadTree,
+    width,
+    height,
+  });
   useEffect(() => {
     pause(!visible);
   }, [visible]);
+  useEffect(() => {
+    setQuadTreeUpdateInterval(!!capturedBot ? 20 : 80);
+  }, [capturedBot]);
   return (
     <div className={clsx("pool", styles.svg, className)}>
       <svg
