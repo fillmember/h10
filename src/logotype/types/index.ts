@@ -28,7 +28,7 @@ export type PoolProps = {
   foregroundColor: string;
   strokeWidth: number;
   bleed?: number;
-  unit?: number;
+  zoom?: number;
   count?: number;
   speed?: number;
   grabDistance?: number;

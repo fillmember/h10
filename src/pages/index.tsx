@@ -1,19 +1,39 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { BoundingMode } from "../logotype/types";
-
-const DynamicPool = dynamic(() =>
-  import("../logotype/components/Pool").then((mod) => mod.Pool)
-);
+import { Pool } from "../logotype/components/Pool";
 
 export default () => (
   <main>
-    <DynamicPool
+    <Pool
+      className="h-64 w-full"
       backgroundColor="#CDCECF"
       foregroundColor="#332"
-      strokeWidth={2}
+      strokeWidth={3}
+      zoom={2}
       bleed={30}
-      boundingMode={BoundingMode.Warp}
+      count={8}
+      boundingMode={BoundingMode.Bounce}
     />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
   </main>
 );

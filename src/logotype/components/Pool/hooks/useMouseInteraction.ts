@@ -69,6 +69,6 @@ export function useMouseInteraction(
       onMouseLeave: onMouseUp,
     },
     capturedBot,
-    refSvg: svg,
+    ref: svg,
   };
 }
