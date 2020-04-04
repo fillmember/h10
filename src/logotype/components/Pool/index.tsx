@@ -26,7 +26,7 @@ export const Pool = withSize({
   monitorWidth: true,
   monitorHeight: true,
 })((props: PoolProps & HTMLAttributes<SVGSVGElement> & { size: any }) => {
-  const { count, className, size, zoom } = props;
+  const { count, className, size, zoom, birthStagger } = props;
   const { width, height } = useSize(size.width, size.height, zoom);
   const [bots, addBot] = useBots({ props, width, height });
   const quadTree = useQuadTree(width, height);
@@ -35,9 +35,14 @@ export const Pool = withSize({
   });
   const [ref2, visible] = useInView();
   useEffect(() => {
-    for (let i = 0; i < count; i++) {
-      addBot(quadTree, i);
-    }
+    new Array(count)
+      .fill(birthStagger)
+      .map((v, i) => v * i)
+      .forEach((delay, index) => {
+        setTimeout(() => {
+          addBot(quadTree, index);
+        }, delay);
+      });
   }, []);
   const refMerged = useCallback((e) => mergeRefs([ref1, ref2], e), [ref2]);
   const { pause } = useFrame({ props, bots, quadTree, width, height });
