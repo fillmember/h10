@@ -1,0 +1,33 @@
+.bot {
+  cursor: pointer;
+}
+.zoomer {
+  transition: transform 0.3s ease;
+}
+.captured .zoomer {
+  transform: scale(1.2);
+}
+.bg {
+  stroke-width: 0;
+}
+.stroke {
+  stroke-linecap: round;
+  fill: none;
+}
+.debug.stroke {
+  stroke-linecap: none;
+  stroke-width: 1;
+  stroke: currentColor;
+}
+@keyframes birth {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.birth {
+  animation-name: birth;
+  animation-duration: 0.5s;
+}

@@ -1,0 +1,7 @@
+.svg {
+  stroke: #000;
+  stroke-width: 2;
+  fill: #fff;
+  shape-rendering: optimizeSpeed;
+  stroke-linecap: round;
+}

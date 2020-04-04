@@ -1,0 +1,19 @@
+{
+  "name": "site3000next",
+  "scripts": {
+    "dev": "next",
+    "build:netlify": "next export"
+  },
+  "dependencies": {
+    "clsx": "^1.1.0",
+    "lodash": "^4.17.15",
+    "next": "^9.3.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.11.0",
+    "@types/react": "^16.9.32",
+    "typescript": "^3.8.3"
+  }
+}
