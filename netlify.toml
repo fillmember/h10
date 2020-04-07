@@ -1,5 +1,5 @@
 [build]
   publish = "out"
-  command = "npm run export"
+  command = "npm run build:netlify"
 
 environment = { NODE_ENV="production", NODE_VERSION="10" }
