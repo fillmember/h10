@@ -19,7 +19,9 @@ import styles from "./pool.module.css";
 export const Pool = withSize({
   monitorWidth: true,
   monitorHeight: true,
-})((props: PoolProps & HTMLAttributes<SVGSVGElement> & { size: any }) => {
+})(function Pool(
+  props: PoolProps & HTMLAttributes<SVGSVGElement> & { size: any }
+) {
   const { count, className, size, zoom, birthStagger, botFeatures } = props;
   const { width, height } = useSize(size.width, size.height, zoom);
   const [bots, addBot] = useBots({ props, width, height });

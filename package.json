@@ -2,7 +2,7 @@
   "name": "site3000next",
   "scripts": {
     "dev": "next",
-    "build:netlify": "next export"
+    "build:netlify": "next build && next export"
   },
   "dependencies": {
     "clsx": "^1.1.0",
@@ -10,6 +10,7 @@
     "next": "^9.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.9.0",
     "react-intersection-observer": "^8.26.1",
     "react-sizeme": "^2.6.12",
     "tailwindcss": "^1.2.0"
