@@ -14,13 +14,11 @@ export function useFrame(input: {
   height: number;
 }) {
   const { bots, quadTree } = input;
-  const refAniFrameReq = useRef<number>();
-  const refT0 = useRef<number>(0);
-  const refAge = useRef<number>(0);
+  const refAniFrameReq = useRef<number>(0);
+  const refAnimationParams = useRef<Record<string, number>>({ age: 0, t: 0 });
   const [, render] = useState<number>(0);
   const [qtUpdateInterval, setQuadTreeUpdateInterval] = useState(100);
-  const refPause = useRef<boolean>(false);
-  const pause = (value: boolean) => (refPause.current = value);
+  const [paused, setPause] = useState<boolean>(false);
   const onFrame: FrameRequestCallback = (t1) => {
     const {
       width,
@@ -28,12 +26,10 @@ export function useFrame(input: {
       props,
       props: { speed, boundingMode },
     } = input;
-    const paused = refPause.current;
     if (!paused) {
-      const age = refAge.current;
-      const t0 = refT0.current || t1;
-      const dt = clamp((t1 - t0) / 30, 0, 1);
-      if (age % qtUpdateInterval === qtUpdateInterval - 1) {
+      const { age, t } = refAnimationParams.current;
+      const dt = clamp((t1 - t) / 30, 0, 1);
+      if (bots.length > 1 && age % qtUpdateInterval >= qtUpdateInterval - 1) {
         updateQuadTree(quadTree, bots);
       }
       bots.forEach((bot, index) => {
@@ -46,8 +42,8 @@ export function useFrame(input: {
           index,
         });
       });
-      refAge.current = age + 1;
-      refT0.current = t1;
+      refAnimationParams.current.age = age + 1;
+      refAnimationParams.current.t = t1;
       render(t1);
     }
     refAniFrameReq.current = requestAnimationFrame(onFrame);
@@ -56,5 +52,5 @@ export function useFrame(input: {
     refAniFrameReq.current = requestAnimationFrame(onFrame);
     return () => cancelAnimationFrame(refAniFrameReq.current);
   }, []);
-  return { setQuadTreeUpdateInterval, pause };
+  return { setQuadTreeUpdateInterval, pause: setPause };
 }
