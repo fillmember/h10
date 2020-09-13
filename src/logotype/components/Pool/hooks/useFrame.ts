@@ -2,7 +2,7 @@ import clamp from "lodash/clamp";
 import { PoolProps } from "../../../types";
 import QuadTree from "../../../core/QuadTree";
 import Bot from "../../../core/Bot";
-import { useEffect, useState, useCallback, useMemo, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { updateQuadTree } from "./useQuadTree";
 import * as boundaryHandlingFunctions from "../../../fnPoolBounding";
 
@@ -14,14 +14,10 @@ export function useFrame(input: {
   height: number;
 }) {
   const { bots, quadTree } = input;
-  const refInput = useRef(input);
-  useEffect(() => {
-    refInput.current = input;
-  }, [input.width, input.height, input.props.speed, input.props.boundingMode]);
   const refAniFrameReq = useRef<number>();
-  const refT0 = useRef<number>();
+  const refT0 = useRef<number>(0);
   const refAge = useRef<number>(0);
-  const [, render] = useState();
+  const [, render] = useState<number>(0);
   const [qtUpdateInterval, setQuadTreeUpdateInterval] = useState(100);
   const refPause = useRef<boolean>(false);
   const pause = (value: boolean) => (refPause.current = value);
@@ -31,11 +27,11 @@ export function useFrame(input: {
       height,
       props,
       props: { speed, boundingMode },
-    } = refInput.current;
+    } = input;
     const paused = refPause.current;
     if (!paused) {
       const age = refAge.current;
-      const t0 = refT0.current != undefined ? refT0.current : t1;
+      const t0 = refT0.current || t1;
       const dt = clamp((t1 - t0) / 30, 0, 1);
       if (age % qtUpdateInterval === qtUpdateInterval - 1) {
         updateQuadTree(quadTree, bots);
