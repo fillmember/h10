@@ -2,6 +2,12 @@
 .pool {
   min-height: max(640px, 66vh);
 }
+@screen md {
+  .section,
+  .pool {
+    max-height: 1000px;
+  }
+}
 .content {
   @apply p-4;
   @apply self-center;
