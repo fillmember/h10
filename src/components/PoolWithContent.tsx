@@ -1,5 +1,9 @@
+import clsx from "clsx";
+import mapValues from "lodash/mapValues";
 import { Pool } from "../logotype/components/Pool";
 import { PoolProps } from "../logotype/types";
+import styles from "./PoolWithContent.module.css";
+import { useInView } from "react-intersection-observer";
 
 export enum Layout {
   Half,
@@ -7,29 +11,36 @@ export enum Layout {
   Full,
 }
 
-const clsSet = {
-  [Layout.Half]: {
-    pool: "absolute md:static z-0 w-full md:w-1/2 h-full",
-    content: "relative md:static z-10 w-full md:w-1/2 h-full p-4",
+const clsSet = mapValues(
+  {
+    [Layout.Half]: {
+      section: "grid md:grid-cols-2",
+      pool: "",
+      content: "",
+    },
+    [Layout.HalfReverse]: {
+      section: "grid md:grid-cols-2",
+      pool: "row-start-1 col-start-2",
+      content: "row-start-1 col-start-1",
+    },
+    [Layout.Full]: {
+      section: "relative overflow-hidden",
+      pool: "",
+      content: "absolute inset-0",
+    },
   },
-  [Layout.HalfReverse]: {
-    pool: "absolute md:static z-0 w-full md:w-1/2 h-full",
-    content: "relative md:static z-10 w-full md:w-1/2 h-full p-4 order-first",
-  },
-  [Layout.Full]: {
-    pool: "absolute z-10 w-full h-full",
-    content: "static z-20 w-full p-4",
-  },
-};
+  (o) => mapValues(o, (v, k) => clsx(v, styles[k]))
+);
 
 export const PoolWithContent: React.FC<{
   poolProps: PoolProps;
   children: React.ReactNode;
   layout: Layout;
 }> = ({ poolProps, children, layout }) => {
+  const [ref, visible] = useInView();
   return (
-    <section className="relative w-full h-66vh flex flex-wrap min-h-64">
-      <Pool className={clsSet[layout].pool} {...poolProps} />
+    <section ref={ref} className={clsSet[layout].section}>
+      {visible && <Pool className={clsSet[layout].pool} {...poolProps} />}
       <div className={clsSet[layout].content}>{children}</div>
     </section>
   );

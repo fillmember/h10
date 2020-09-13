@@ -1,9 +1,9 @@
-import { HTMLAttributes, useEffect, useCallback } from "react";
+import { HTMLAttributes, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { withSize } from "react-sizeme";
+import { withSize, SizeMeProps } from "react-sizeme";
 import clsx from "clsx";
 import { Bot as BotComponent } from "../bot";
-import { PoolProps, BoundingMode, BotFeature } from "../../types";
+import { PoolProps, BoundingMode } from "../../types";
 import {
   useQuadTree,
   useSize,
@@ -11,7 +11,6 @@ import {
   useMouseInteraction,
   useBots,
   useFrame,
-  useMergedRef,
 } from "./hooks";
 import { randomize } from "../../fnBotInit";
 import styles from "./pool.module.css";
@@ -20,16 +19,20 @@ export const Pool = withSize({
   monitorWidth: true,
   monitorHeight: true,
 })(function Pool(
-  props: PoolProps & HTMLAttributes<SVGSVGElement> & { size: any }
+  props: PoolProps & HTMLAttributes<SVGSVGElement> & SizeMeProps
 ) {
   const { count, className, size, zoom, birthStagger, botFeatures } = props;
   const { width, height } = useSize(size.width, size.height, zoom);
   const [bots, addBot] = useBots({ props, width, height });
   const quadTree = useQuadTree(width, height);
-  const { ref: ref1, eventHandlers, capturedBot } = useMouseInteraction(props, {
+  const {
+    ref: refMouseInteraction,
+    eventHandlers,
+    capturedBot,
+  } = useMouseInteraction(props, {
     quadTree,
   });
-  const [ref2, visible] = useInView();
+  const [refInView, visible] = useInView();
   useEffect(() => {
     new Array(count)
       .fill(birthStagger)
@@ -54,10 +57,10 @@ export const Pool = withSize({
     setQuadTreeUpdateInterval(!!capturedBot ? 20 : 80);
   }, [capturedBot]);
   return (
-    <div className={clsx("pool", styles.svg, className)}>
+    <div ref={refInView} className={clsx(styles.svg, className)}>
       <svg
         className="w-full h-full"
-        ref={useMergedRef(ref1, ref2)}
+        ref={refMouseInteraction}
         viewBox={`0 0 ${width} ${height}`}
         style={usePoolStyle(props)}
         {...eventHandlers}

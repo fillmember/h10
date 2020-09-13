@@ -1,0 +1,8 @@
+.section,
+.pool {
+  min-height: 66vh;
+}
+.content {
+  @apply p-4;
+  @apply self-center;
+}
