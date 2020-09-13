@@ -1,4 +1,11 @@
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
+  purge: {
+    content: ["src/**/*.tsx", "src/**/*.ts", "src/**/*.css"],
+  },
   theme: {
     extend: {
       spacing: {
@@ -9,9 +16,9 @@ module.exports = {
         "75vh": "75vh",
       },
       minHeight: {
-        "64": "16rem",
-        "96": "24rem",
-        "128": "32rem",
+        64: "16rem",
+        96: "24rem",
+        128: "32rem",
       },
     },
   },

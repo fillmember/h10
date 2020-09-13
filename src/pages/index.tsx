@@ -21,43 +21,13 @@ const poolPropsSet = {
 const usePoolPropAtIndex = (i: number): PoolProps =>
   mapValues(poolPropsSet, (arr) => arr[i]);
 
-const content = [
-  <div className="flex justify-center items-center w-full h-full">
-    <div>
-      <h1 className="text-5xl">H10</h1>
-    </div>
-  </div>,
-  <>
-    <h2 className="text-5xl">
-      Creative <br />
-      Frontend Developer
-    </h2>
-  </>,
-  <>
-    <h2 className="text-5xl">
-      Multimedia
-      <br />
-      /
-      <br />
-      Experimental
-    </h2>
-  </>,
-  <>
-    <h2 className="text-5xl">
-      Zwolle, NL
-      <br />
-      &
-      <br />
-      Virtual Space
-    </h2>
-  </>,
-];
-export default () => (
+const Page = () => (
   <main>
     <PoolWithContent poolProps={usePoolPropAtIndex(0)} layout={Layout.Full}>
       <div className="flex justify-center items-center w-full h-full">
         <div>
           <h1 className="text-5xl">H10</h1>
+          <p>ten = hui-yuan tien</p>
         </div>
       </div>
     </PoolWithContent>
@@ -91,7 +61,7 @@ export default () => (
           </a>
           <br />
           <a className="a text-3xl" href="/works/yeedog">
-            details
+            <GoDiffModified className="mr-2" /> details
           </a>
         </div>
         <iframe
@@ -119,7 +89,9 @@ export default () => (
       </Link>
     </PoolWithContent>
     <section className="w-full bg-red-500 text-center px-4 py-8 text-4xl">
-      Commercial Works | CV | Contact
+      CV | Contact
     </section>
   </main>
 );
+
+export default Page;
