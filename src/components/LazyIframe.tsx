@@ -20,3 +20,14 @@ export const LazyIframe: React.FC<
 LazyIframe.defaultProps = {
   fallback: () => null,
 };
+
+export const Lazyload: React.FC<{
+  fallback?: React.ReactNode;
+  children?: React.ReactNode;
+}> = ({ fallback, children }) => {
+  const [ref, visible] = useInView();
+  if (!visible) {
+    return <div ref={ref}>{fallback}</div>;
+  }
+  return <div ref={ref}>{children}</div>;
+};

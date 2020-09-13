@@ -2,7 +2,7 @@ import React from "react";
 import mapValues from "lodash/mapValues";
 import { BoundingMode, BotFeature, PoolProps } from "../logotype/types";
 import { PoolWithContent, Layout } from "../components/PoolWithContent";
-import { LazyIframe } from "../components/LazyIframe";
+import { LazyIframe, Lazyload } from "../components/LazyIframe";
 import clsx from "clsx";
 
 const poolPropsSet = {
@@ -96,9 +96,11 @@ const Page = () => (
       </div>
     </section>
     <section className="grid md:grid-cols-2">
-      <video autoPlay muted loop>
-        <source src="/assets/dualai-demo.mp4" />
-      </video>
+      <Lazyload fallback={<div className="bg-gunsmoke-500 h-64" />}>
+        <video autoPlay muted loop className="w-full h-full">
+          <source src="/assets/dualai-demo.mp4" />
+        </video>
+      </Lazyload>
       <div className="p-4 text-4xl self-center">
         <h3 className="mb-2">Website for Dualai Design Studio</h3>
         <p>
