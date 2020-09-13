@@ -1,9 +1,8 @@
 import React from "react";
-import Link from "next/link";
 import mapValues from "lodash/mapValues";
-import { GoDiffModified } from "react-icons/go";
 import { BoundingMode, BotFeature, PoolProps } from "../logotype/types";
 import { PoolWithContent, Layout } from "../components/PoolWithContent";
+import { LazyIframe } from "../components/LazyIframe";
 
 const poolPropsSet = {
   backgroundColor: ["#CDCEDF", "#00F", "#000", "#D0F"],
@@ -23,7 +22,11 @@ const usePoolPropAtIndex = (i: number): PoolProps =>
 
 const Page = () => (
   <main>
-    <PoolWithContent poolProps={usePoolPropAtIndex(0)} layout={Layout.Full}>
+    <PoolWithContent
+      poolProps={usePoolPropAtIndex(0)}
+      layout={Layout.Full}
+      classNames={{ content: "pointer-events-none" }}
+    >
       <div className="flex justify-center items-center w-full h-full">
         <div className="w-2/3">
           <h1 className="text-5xl -ml-px">H10</h1>
@@ -45,12 +48,12 @@ const Page = () => (
       </p>
     </PoolWithContent>
     <section>
-      <h2 className="text-5xl pt-4 mb-4 text-center">Featured Projects</h2>
+      <h2 className="text-5xl pt-6 mb-6 text-center">Featured Projects</h2>
       <div className="grid grid-cols-2">
         <div className="p-4 text-4xl self-center">
           <p>
-            I made a computer dog, who can be your desktop companion. And you
-            can feed him your files*.
+            I made a computer dog who can be your desktop companion. And you can
+            feed him your files*.
           </p>
           <a
             className="a text-3xl"
@@ -64,33 +67,43 @@ const Page = () => (
             *drag & drop, no files are uploaded or deleted.
           </p>
         </div>
-        <iframe
+        <LazyIframe
           className="w-full"
           style={{ minHeight: "50vh" }}
           src="https://yee.dog/"
+          fallback={
+            <div className="w-full bg-gray-300" style={{ minHeight: "50vh" }} />
+          }
         />
       </div>
     </section>
-    <PoolWithContent
-      poolProps={usePoolPropAtIndex(2)}
-      layout={Layout.HalfReverse}
-    >
-      <h2 className="text-5xl">
-        Web &
-        <br />
-        Multimedia &
-        <br />
-        Experimental Design
-      </h2>
-      <Link href="/works">
-        <a className="a mt-4 text-3xl inline-flex items-center">
-          <GoDiffModified className="mr-2" />
-          See Works
+    <section className="grid grid-cols-2">
+      <LazyIframe
+        className="w-full"
+        style={{ minHeight: "50vh" }}
+        src="https://dualai.com/"
+        fallback={
+          <div className="w-full bg-gray-300" style={{ minHeight: "50vh" }} />
+        }
+      />
+      <div className="p-4 text-4xl self-center">
+        <p>
+          I conceptualized and developed a website for Dualai Design Studio. I
+          attempted to use 3D to demonstrate the tangibility of the studio's
+          specialized editorial design.
+        </p>
+        <a
+          className="a text-3xl"
+          href="https://dualai.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit the site
         </a>
-      </Link>
-    </PoolWithContent>
-    <section className="w-full bg-red-500 text-center px-4 py-8 text-4xl">
-      CV | Contact
+      </div>
+    </section>
+    <section>
+      <h2 className="text-5xl pt-6 mb-6 text-center">Experiences</h2>
     </section>
   </main>
 );

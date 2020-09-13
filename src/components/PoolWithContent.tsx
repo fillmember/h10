@@ -11,7 +11,11 @@ export enum Layout {
   Full,
 }
 
-const clsSet = mapValues(
+type ClassNames = { section: string; pool: string; content: string };
+
+const mergeWith = (x) => (o) => mapValues(o, (v, k) => clsx(v, x[k]));
+
+const clsSet: ClassNames = mapValues(
   {
     [Layout.Half]: {
       section: "grid md:grid-cols-2",
@@ -29,19 +33,21 @@ const clsSet = mapValues(
       content: "absolute inset-0",
     },
   },
-  (o) => mapValues(o, (v, k) => clsx(v, styles[k]))
+  mergeWith(styles)
 );
 
 export const PoolWithContent: React.FC<{
   poolProps: PoolProps;
   children: React.ReactNode;
   layout: Layout;
-}> = ({ poolProps, children, layout }) => {
+  classNames?: Partial<ClassNames>;
+}> = ({ poolProps, classNames = {}, children, layout }) => {
   const [ref, visible] = useInView();
+  const { section, pool, content } = mergeWith(classNames)(clsSet[layout]);
   return (
-    <section ref={ref} className={clsSet[layout].section}>
-      {visible && <Pool className={clsSet[layout].pool} {...poolProps} />}
-      <div className={clsSet[layout].content}>{children}</div>
+    <section ref={ref} className={section}>
+      {visible && <Pool className={pool} {...poolProps} />}
+      <div className={content}>{children}</div>
     </section>
   );
 };
