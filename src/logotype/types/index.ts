@@ -30,9 +30,9 @@ export enum BotFeature {
 }
 
 export type PoolProps = {
-  backgroundColor: string;
-  foregroundColor: string;
-  strokeWidth: number;
+  backgroundColor?: string;
+  foregroundColor?: string;
+  strokeWidth?: number;
   bleed?: number;
   zoom?: number;
   count?: number;
