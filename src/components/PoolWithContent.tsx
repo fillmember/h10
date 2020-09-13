@@ -46,6 +46,7 @@ export const PoolWithContent: React.FC<{
   const { section, pool, content } = mergeWith(classNames)(clsSet[layout]);
   return (
     <section ref={ref} className={section}>
+      {!visible && <div className={pool} />}
       {visible && <Pool className={pool} {...poolProps} />}
       <div className={content}>{children}</div>
     </section>
