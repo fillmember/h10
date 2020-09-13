@@ -1,6 +1,6 @@
 .section,
 .pool {
-  min-height: 66vh;
+  min-height: max(640px, 66vh);
 }
 .content {
   @apply p-4;
