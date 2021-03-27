@@ -1,0 +1,51 @@
+.cv {
+  @apply m-2 p-4;
+  @apply text-lg;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  @apply print:text-sm;
+}
+
+.cv h1,
+.cv h2,
+.cv h3,
+.cv h4,
+.cv h5 {
+  @apply font-semibold;
+  @apply mb-2;
+}
+
+.cv h1 {
+  @apply text-5xl;
+  @apply mb-6;
+}
+.cv h2 {
+  @apply text-3xl;
+  @apply mb-4;
+}
+.cv h3 {
+  @apply text-xl;
+  @apply mt-4;
+}
+
+.cv ul,
+.cv p {
+  @apply my-2;
+}
+
+.cv a {
+  @apply underline;
+  @apply print:no-underline;
+}
+
+.cv p {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-1;
+  @apply leading-tight text-justify;
+  @apply max-w-md;
+}
+
+.text {
+  @apply col-span-2;
+  @apply text-base;
+  @apply print:text-sm;
+}
