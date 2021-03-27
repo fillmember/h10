@@ -1,23 +1,25 @@
 {
-  "name": "site3000next",
   "scripts": {
     "dev": "next",
     "build:netlify": "next build && next export"
   },
   "dependencies": {
-    "@types/node": "^13.13.19",
-    "@types/react": "^16.9.49",
-    "clsx": "^1.1.0",
-    "lodash": "^4.17.20",
-    "next": "^9.5.3",
-    "postcss-flexbugs-fixes": "^4.2.0",
+    "@tailwindcss/typography": "^0.4.0",
+    "@types/node": "^13.13.48",
+    "@types/react": "^16.14.5",
+    "autoprefixer": "^10.2.5",
+    "clsx": "^1.1.1",
+    "lodash": "^4.17.21",
+    "next": "^10.0.9",
+    "postcss": "^8.2.8",
+    "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-icons": "^3.9.0",
-    "react-intersection-observer": "^8.26.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^3.11.0",
+    "react-intersection-observer": "^8.31.0",
     "react-sizeme": "^2.6.12",
-    "tailwindcss": "^1.8.8",
-    "typescript": "^3.8.3"
+    "tailwindcss": "^2.0.4",
+    "typescript": "^3.9.9"
   }
 }

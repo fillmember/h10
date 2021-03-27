@@ -32,10 +32,14 @@ const Page = () => (
     >
       <div className="flex justify-center items-center w-full h-full">
         <div className="w-2/3">
-          <h1 className="text-5xl -ml-px">H10</h1>
-          <p>{"= ten"}</p>
+          <h1 className="text-5xl -ml-px">Ten</h1>
           <p>{"= hui-yuan tien"}</p>
           <p>{"= creative web developer"}</p>
+          <ul className="mt-4 pointer-events-auto">
+            <li>
+              <a className="a" href="/cv">CV</a>
+            </li>
+          </ul>
         </div>
       </div>
     </PoolWithContent>
@@ -173,7 +177,7 @@ const Page = () => (
         <div className="bg-blue-500 w-16 h-32 transform translate-x-2"></div>
         <div className="bg-blue-500 w-32 h-32 rounded-full"></div>
       </div>
-      <div className="mt-8 grid grid-cols-4 text-xl md:text-2xl text-center">
+      <div className="mt-8 grid grid-cols-3 text-xl md:text-2xl text-center">
         <span>
           <a className="a" href="https://www.linkedin.com/in/hytien/">
             LinkedIn
@@ -187,11 +191,6 @@ const Page = () => (
         <span>
           <a className="a" href="https://github.com/fillmember">
             GitHub
-          </a>
-        </span>
-        <span>
-          <a className="a" href="https://twitter.com/fillmember">
-            Twitter
           </a>
         </span>
       </div>

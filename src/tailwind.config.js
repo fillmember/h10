@@ -1,13 +1,12 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
   purge: {
     content: ["src/**/*.tsx", "src/**/*.ts", "src/**/*.css"],
   },
   theme: {
     extend: {
+      screens: {
+        print: { raw: "print" },
+      },
       colors: {
         gunsmoke: {
           50: "#F9F9F9",
@@ -48,5 +47,5 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
