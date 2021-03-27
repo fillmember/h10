@@ -87,11 +87,15 @@ export default function CV() {
           <h3>
             <span>Yee Dog</span> <a href="https://yee.dog">yee.dog</a>
           </h3>
-          <p>Virtual dog companion available 24/7.</p>
+          <p>
+            <span className="col-span-2">Virtual dog companion available 24/7.</span>
+          </p>
           <h3>
             <span>Dualai</span> <a href="https://dualai.com">dualai.com</a>
           </h3>
-          <p>3D portfolio for TW-based design studio.</p>
+          <p>
+            <span className="col-span-2">3D portfolio for TW-based design studio.</span>
+          </p>
         </section>
         <section>
           <h2>Education</h2>
