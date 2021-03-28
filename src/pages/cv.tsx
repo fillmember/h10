@@ -16,22 +16,26 @@ export default function CV() {
       <Head>
         <title>CV - H10</title>
       </Head>
-      <button className="p-2 absolute top-4 right-4 border border-gunsmoke-500 print:hidden" onClick={print}>
-        download as pdf
-      </button>
       <img className="absolute top-6 right-4 h-12 w-12 hidden print:block" alt="logo" src="/favicon.svg" />
       <section>
-        <h1>Hui-yuan Tien (Ten)</h1>
+        <h1>
+          Hui-yuan Tien&nbsp;
+          <wbr />
+          (Ten)
+        </h1>
+        <button className="p-2 sm:absolute text-base mb-4 top-4 right-4 border border-black print:hidden" onClick={print}>
+          download as pdf
+        </button>
         <nav className="text-sm grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-1">
           <Link href="/">
             <a>ten10.netlify.app</a>
           </Link>
           <a href={`mailto:`} dangerouslySetInnerHTML={{ __html: email }}></a>
           <a href="https://github.com/fillmember">github.com/fillmember</a>
-          <a href="https://www.linkedin.com/in/hytien/">www.linkedin.com/in/hytien/</a>
+          <a href="https://linkedin.com/in/hytien">linkedin.com/in/hytien</a>
         </nav>
       </section>
-      <div className="grid grid-cols-2 gap-8 mt-8">
+      <div className="grid sm:grid-cols-2 gap-8 mt-8">
         <section>
           <h2>Experience</h2>
           <h3>
@@ -69,7 +73,7 @@ export default function CV() {
           <p>Explore epic landscapes using immersive technologies (AR & VR), Unity and Vue.</p>
         </section>
         <section>
-          <div className="mb-6">
+          <div className="mb-3">
             <h2>Skills</h2>
             <h3>Tech</h3>
             <ul className="grid grid-cols-2">
@@ -77,6 +81,8 @@ export default function CV() {
               <span>React</span>
               <span>Vue</span>
               <span>Tailwind CSS</span>
+              <span>GraphQL</span>
+              <span>CI/CD</span>
               <span>Three</span>
               <span>react-fiber-three</span>
               <span>C#</span>
@@ -87,8 +93,8 @@ export default function CV() {
             <h3>Design</h3>
             <ul className="grid grid-cols-2">
               <span>Sketch</span>
-              <span>User Experience</span>
-              <span>User Interface</span>
+              <span>UX/UI</span>
+              <span>3D</span>
               <span>Animation</span>
             </ul>
             <h3>Language</h3>
@@ -104,28 +110,26 @@ export default function CV() {
         <section>
           <h2>Projects</h2>
           <h3>
-            <span className="mr-4">Yee Dog</span> <a href="https://yee.dog">yee.dog</a>
+            <a href="https://yee.dog">yee.dog</a>
           </h3>
-          <p>Virtual dog companion available 24/7.</p>
+          <p>Virtual dog companion available 24/7. </p>
           <h3>
-            <span className="mr-4">Dualai</span> <a href="https://dualai.com">dualai.com</a>
+            <a href="https://dualai.com">dualai.com</a>
           </h3>
-          <p>3D portfolio for TW-based design studio.</p>
+          <p>3D portfolio for TW-based design studio. </p>
         </section>
         <section>
           <h2>Education</h2>
           <h3>Master of Animation</h3>
-          <dl>
-            <span>Avans Hogeschool</span>
+          <div className="grid grid-cols-3 gap-1">
+            <span className="col-span-2">Avans Hogeschool</span>
             <span className="text-right">2014 ~ 2015</span>
-            <span>Breda, NL</span>
-          </dl>
+          </div>
           <h3>Bachelor of Design</h3>
-          <dl>
-            <span>National Taiwan University of Science and Technology</span>
+          <div className="grid grid-cols-3 gap-1">
+            <span className="col-span-2">National Taiwan University of Science and Technology</span>
             <span className="text-right">2009 ~ 2013</span>
-            <span>Taipei, TW</span>
-          </dl>
+          </div>
         </section>
       </div>
     </main>
