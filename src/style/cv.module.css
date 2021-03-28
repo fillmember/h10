@@ -1,8 +1,6 @@
 .cv {
   @apply m-2 p-4;
   @apply text-lg;
-  font-size: 1.125rem;
-  line-height: 1.7;
   @apply print:text-sm;
 }
 
@@ -38,10 +36,10 @@
   @apply print:no-underline;
 }
 
-.cv p {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-1;
-  @apply leading-tight text-justify;
-  @apply max-w-md;
+.cv dl {
+  @apply grid grid-cols-2 gap-2;
+  @apply items-center;
+  @apply leading-tight;
 }
 
 .text {
