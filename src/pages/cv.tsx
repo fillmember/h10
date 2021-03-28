@@ -57,7 +57,7 @@ export default function CV() {
             <span>hyam Studios</span>
           </h3>
           <dl>
-            <dt>2018 ~ 2019</dt>
+            <dt className="tabular-nums tracking-tighter">2018 ~ 2019</dt>
             <dt>Berlin, DE</dt>
           </dl>
           <p>Consult clients and outline technical solutions, shaping the design studio's digitial offers. </p>
@@ -67,7 +67,7 @@ export default function CV() {
             <span>Artificial Rome</span>
           </h3>
           <dl>
-            <dt>2016 ~ 2018</dt>
+            <dt className="tabular-nums tracking-tighter">2016 ~ 2018</dt>
             <dt>Berlin, DE</dt>
           </dl>
           <p>Explore epic landscapes using immersive technologies (AR & VR), Unity and Vue.</p>
@@ -123,12 +123,12 @@ export default function CV() {
           <h3>Master of Animation</h3>
           <div className="grid grid-cols-3 gap-1">
             <span className="col-span-2">Avans Hogeschool</span>
-            <span className="text-right">2014 ~ 2015</span>
+            <span className="text-right tabular-nums tracking-tighter">2014 ~ 2015</span>
           </div>
           <h3>Bachelor of Design</h3>
           <div className="grid grid-cols-3 gap-1">
             <span className="col-span-2">National Taiwan University of Science and Technology</span>
-            <span className="text-right">2009 ~ 2013</span>
+            <span className="text-right tabular-nums tracking-tighter">2009 ~ 2013</span>
           </div>
         </section>
       </div>
