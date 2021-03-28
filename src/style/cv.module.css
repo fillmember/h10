@@ -1,4 +1,5 @@
 .cv {
+  @apply font-inter;
   @apply m-2 p-4;
   @apply text-lg;
   @apply print:text-sm;
@@ -15,14 +16,17 @@
 
 .cv h1 {
   @apply text-5xl;
+  @apply print:text-4xl;
   @apply mb-6;
 }
 .cv h2 {
   @apply text-3xl;
+  @apply print:text-2xl;
   @apply mb-4;
 }
 .cv h3 {
   @apply text-xl;
+  @apply print:text-lg;
   @apply mt-4;
 }
 
@@ -40,10 +44,4 @@
   @apply grid grid-cols-2 gap-2;
   @apply items-center;
   @apply leading-tight;
-}
-
-.text {
-  @apply col-span-2;
-  @apply text-base;
-  @apply print:text-sm;
 }

@@ -7,6 +7,9 @@ module.exports = {
       screens: {
         print: { raw: "print" },
       },
+      fontFamily: {
+        inter: '"Inter"',
+      },
       colors: {
         gunsmoke: {
           50: "#F9F9F9",
